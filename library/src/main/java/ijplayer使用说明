@@ -1,0 +1,33 @@
+#ijkplayer导入项目流程
+
+    1. 拷贝module到project
+    2.library>build>outputs>aar> 拷贝release到 app libs
+    3.app>build.gradle修改如下
+
+          <code>
+
+             repositories {
+                   mavenCentral()
+                   flatDir {
+                              dirs 'libs' //this way we can find the .aar file in libs folder
+                   }
+             }
+             dependencies {
+
+                   compile(name: 'library-release', ext: 'aar')
+
+             }
+
+          </code>
+
+
+
+#ijkplayer源码重新编译后变化：
+
+    1.编译后的so库支持acc mp3 g711a音频
+    2.IjkVideoView添加静音开关控制
+    3.IjkVideoView强制渲染Texture,可以截图
+    4.视频设备断网添加回调函数让java层可以捕获
+    5.集成视频播放时间轴刻度尺（https://github.com/dingyongxiang/TimeRulers）
+
+

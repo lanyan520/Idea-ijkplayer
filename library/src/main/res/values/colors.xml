@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="unable_color">#a0a0a0</color>
+
+    <color name="common_white">#ffffff</color>
+    <color name="common_black">#000000</color>
+    <!-- RadioButton背景色 -->
+    <color name="radio_checked_bg">#ffffff</color>
+    <color name="radio_unchecked_bg">#55b7f9</color>
+    <!-- 导航文字颜色灰 -->
+    <color name="navi_color_normal">#888888</color>
+    <color name="navi_color_checked">#262626</color>
+
+    <!-- 时间轴颜色标识 -->
+    <color name="time_line_normal">#77adfa</color>
+    <color name="time_line_late">#faa72f</color>
+    <color name="time_line_leave_early">#f3668e</color>
+    <color name="time_line_not_check">#ba4dff</color>
+
+    <color name="time_line_txt_blue">#5b94f3</color>
+    <color name="item_selected_gray">#e1e1e1</color>
+
+    <color name="black_overlay">#66000000</color>
+
+    <color name="ijk_color_blue_main">@color/ijk_color_blue_500</color>
+    <color name="ijk_color_blue_50">#E3F2FD</color>
+    <color name="ijk_color_blue_100">#BBDEFB</color>
+    <color name="ijk_color_blue_200">#90CAF9</color>
+    <color name="ijk_color_blue_300">#64B5F6</color>
+    <color name="ijk_color_blue_400">#42A5F5</color>
+    <color name="ijk_color_blue_500">#2196F3</color>
+    <color name="ijk_color_blue_600">#1E88E5</color>
+    <color name="ijk_color_blue_700">#1976D2</color>
+    <color name="ijk_color_blue_800">#1565C0</color>
+    <color name="ijk_color_blue_900">#0D47A1</color>
+
+    <color name="ijk_transparent_dark">#77000000</color>
+
+</resources>
