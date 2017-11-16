@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,9 +32,7 @@ public class Activity_TimeBarView extends AppCompatActivity implements View.OnCl
     private Button mDayBt;
     private Button mHourBt;
     private Button mMinuteBt;
-    private int recordDays = 7;
     private long currentRealDateTime = System.currentTimeMillis();
-    private Calendar calendar;
 
     private static long ONE_MINUTE_IN_MS = 60 * 1000;
     private static long ONE_HOUR_IN_MS = 60 * ONE_MINUTE_IN_MS;
@@ -59,29 +58,25 @@ public class Activity_TimeBarView extends AppCompatActivity implements View.OnCl
         mHourBt.setOnClickListener(this);
         mMinuteBt.setOnClickListener(this);
 
-        calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        //long timebarLeftEndPointTime = currentRealDateTime - 7 * 24 * 3600 * 1000;
-        long timebarLeftEndPointTime = calendar.getTimeInMillis();
-
-        System.out.println("calendar:" + calendar.getTime() + "  currentRealDateTime:" + currentRealDateTime);
-        calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.add(Calendar.DAY_OF_MONTH, 1);
-        long timebarRightEndPointTime = calendar.getTimeInMillis();
-        //long timebarRightEndPointTime = currentRealDateTime + 3 * 3600 * 1000;
+        String startData = "2017-11-16 00:00:00";
+        String endData = "2017-11-16 24:00:00";
+        long timebarLeftEndPointTime = 0;
+        long timebarRightEndPointTime = 0;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            timebarLeftEndPointTime = simpleDateFormat.parse(startData).getTime();
+            timebarRightEndPointTime = simpleDateFormat.parse(endData).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         mTimebarView.initTimebarLengthAndPosition(timebarLeftEndPointTime,
                 timebarRightEndPointTime - 1000, currentRealDateTime);
 
         final List<RecordDataExistTimeSegment> recordDataList = new ArrayList<>();
-        recordDataList.add(new RecordDataExistTimeSegment(timebarLeftEndPointTime - ONE_HOUR_IN_MS * 10, timebarLeftEndPointTime - ONE_HOUR_IN_MS * 9));
-        recordDataList.add(new RecordDataExistTimeSegment(timebarLeftEndPointTime - ONE_HOUR_IN_MS * 7, timebarLeftEndPointTime - ONE_HOUR_IN_MS * 6));
-        recordDataList.add(new RecordDataExistTimeSegment(timebarLeftEndPointTime - ONE_HOUR_IN_MS * 4, timebarLeftEndPointTime - ONE_HOUR_IN_MS * 2));
+        recordDataList.add(new RecordDataExistTimeSegment(timebarLeftEndPointTime + ONE_HOUR_IN_MS * 2, timebarLeftEndPointTime + ONE_HOUR_IN_MS * 3));
+        recordDataList.add(new RecordDataExistTimeSegment(timebarLeftEndPointTime + ONE_HOUR_IN_MS * 5, timebarLeftEndPointTime + ONE_HOUR_IN_MS * 7));
+        recordDataList.add(new RecordDataExistTimeSegment(timebarLeftEndPointTime + ONE_HOUR_IN_MS * 13, timebarLeftEndPointTime + ONE_HOUR_IN_MS * 16));
 
         mTimebarView.setRecordDataExistTimeClipsList(recordDataList);
 

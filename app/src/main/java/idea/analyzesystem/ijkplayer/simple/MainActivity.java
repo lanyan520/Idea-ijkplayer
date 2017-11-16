@@ -35,8 +35,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.TimeBarView:
-                startActivity(new Intent(this,Activity_TimeBarView.class));
+                startActivity(Activity_TimeBarView.class);
+                break;
+
+            case R.id.multipleSpeed:
+                startActivity(Activity_MultipleSpeedView.class);
                 break;
         }
+    }
+
+    public void startActivity(Class cls){
+        startActivity(new Intent(this,cls));
     }
 }

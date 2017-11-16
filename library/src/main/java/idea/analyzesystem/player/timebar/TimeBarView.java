@@ -42,13 +42,13 @@ public class TimeBarView extends View {
     private int screenWidth, screenHeight;
 
 
-    private int linesColor = Color.BLACK;
+    private int linesColor = Color.parseColor("#7A7A7A");
 
-    private int recordBackgroundColor = Color.argb(200, 251, 180, 76);
+    private int recordBackgroundColor = Color.parseColor("#41A2DD");
 
-    private int textColor = Color.BLACK;
+    private int textColor = Color.WHITE;
 
-    private int middleCursorColor = Color.RED;
+    private int middleCursorColor = Color.WHITE;
 
     private Paint timebarPaint = new Paint();
 
@@ -140,16 +140,18 @@ public class TimeBarView extends View {
                     openMove();
                     break;
                 case ACTION_UP:
+
                     if (checkVideo) {
                         if (!checkHasVideo()) {
                             Log.d("ACTION_UP", "NO VIDEO currentTimeInMillisecond:" + currentTimeInMillisecond + " lastcurrentTimeInMillisecond:" + lastcurrentTimeInMillisecond);
                             currentTimeInMillisecond = lastcurrentTimeInMillisecond;
-                            invalidate();
+                            postInvalidate();
                             checkVideo = lastCheckState;
                             if (mOnBarMoveListener != null) {
                                 mOnBarMoveListener.onBarMove(getScreenLeftTimeInMillisecond(), getScreenRightTimeInMillisecond(), -1);
                             }
                         } else {
+                            postInvalidate();
                             if (mOnBarMoveListener != null) {
                                 mOnBarMoveListener.OnBarMoveFinish(getScreenLeftTimeInMillisecond(), getScreenRightTimeInMillisecond(), currentTimeInMillisecond);
                             }
@@ -255,22 +257,23 @@ public class TimeBarView extends View {
     }
 
     private void init(AttributeSet attrs, int defStyleAttr) {
+        setBackgroundColor(Color.BLACK);
         path = new Path();
         TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.TimeBarView, defStyleAttr, 0);
         int n = a.getIndexCount();
         for (int i = 0; i < n; i++) {
             int attr = a.getIndex(i);
             if (attr == R.styleable.TimeBarView_middleCursorColor) {
-                middleCursorColor = a.getColor(attr, Color.RED);
+                middleCursorColor = a.getColor(attr, Color.parseColor("#7A7A7A"));
 
             } else if (attr == R.styleable.TimeBarView_recordBackgroundColor) {// 默认颜色设置为橘黄色
-                recordBackgroundColor = a.getColor(attr, Color.argb(200, 251, 180, 76));
+                recordBackgroundColor = a.getColor(attr, Color.parseColor("#41A2DD"));
 
             } else if (attr == R.styleable.TimeBarView_recordTextColor) {// 默认颜色设置为黑色
-                textColor = a.getColor(attr, Color.BLACK);
+                textColor = a.getColor(attr, Color.WHITE);
 
             } else if (attr == R.styleable.TimeBarView_timebarColor) {// 默认颜色设置为黑色
-                linesColor = a.getColor(attr, Color.BLACK);
+                linesColor = a.getColor(attr, Color.parseColor("#7A7A7A"));
 
             }
 
@@ -550,7 +553,7 @@ public class TimeBarView extends View {
 
     public void setCurrentTimeInMillisecond(long currentTimeInMillisecond) {
         this.currentTimeInMillisecond = currentTimeInMillisecond;
-        invalidate();
+        postInvalidate();
     }
 
     @Override
@@ -622,7 +625,7 @@ public class TimeBarView extends View {
 
     public void setMiddleCursorVisible(boolean middleCursorVisible) {
         this.middleCursorVisible = middleCursorVisible;
-        invalidate();
+       postInvalidate();
     }
 
     int lastMmiddlecursor = 0;
@@ -632,6 +635,8 @@ public class TimeBarView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        //canvas.drawARGB(255,0,0,0);
 
 
         /*if (notInited) {
@@ -662,13 +667,11 @@ public class TimeBarView extends View {
             }
         }
 
-
-        // 画刻度及时间
-        drawTick(canvas);
-
         // 画录像条
         drawRecord(canvas);
 
+        // 画刻度及时间
+        drawTick(canvas);
 
         // 画中间刻度
         drawmiddleCursor(canvas);
@@ -683,7 +686,7 @@ public class TimeBarView extends View {
 
     private void drawTick(Canvas canvas) {
         int totalTickToDrawInOneScreen = (int) (screenWidth / pixelsPerSecond / timebarTickCriterionMap.get(currentTimebarTickCriterionIndex).getMinTickInSecond()) + 2;
-        float keytextY = getHeight() / 2;
+        float keytextY = getHeight()-10;
         for (int i = -20; i <= totalTickToDrawInOneScreen + 10; i++) {
             long drawTickTimeInSecondUTC = firstTickToSeeInSecondUTC + i * timebarTickCriterionMap.get(currentTimebarTickCriterionIndex).getMinTickInSecond();
             long drawTickTimeInSecondLocalTimezone = drawTickTimeInSecondUTC + zoneOffsetInSeconds;
@@ -861,7 +864,7 @@ public class TimeBarView extends View {
                         left = right - getWidth();
                     }
                     layout(left, top, right, top + getHeight());
-                    invalidate();
+                    postInvalidate();
 
                     lastX = event.getRawX();
                     lastY = event.getRawY();
@@ -871,7 +874,7 @@ public class TimeBarView extends View {
                     currentTimeInMillisecond = mostLeftTimeInMillisecond + deltaX * WHOLE_TIMEBAR_TOTAL_SECONDS * 1000 / timeBarLength;
 
                     if (mOnBarMoveListener != null) {
-                        mOnBarMoveListener.onBarMove(getScreenLeftTimeInMillisecond(), getScreenRightTimeInMillisecond(), currentTimeInMillisecond);
+                       // mOnBarMoveListener.onBarMove(getScreenLeftTimeInMillisecond(), getScreenRightTimeInMillisecond(), currentTimeInMillisecond);
                     }
 
                 }
@@ -882,7 +885,7 @@ public class TimeBarView extends View {
                 if (mOnBarMoveListener != null) {
                     mOnBarMoveListener.onBarMove(getScreenLeftTimeInMillisecond(), getScreenRightTimeInMillisecond(), currentTimeInMillisecond);
                 }
-                invalidate();
+                postInvalidate();
                /* if (lastMoveState) {
                     if (handler.hasMessages(MOVEING))
                         handler.removeMessages(MOVEING);
@@ -895,7 +898,6 @@ public class TimeBarView extends View {
                     int deltaX_up = (0 - getLeft());
                     int timeBarLength_up = getWidth() - screenWidth;
                     currentTimeInMillisecond = mostLeftTimeInMillisecond + deltaX_up * WHOLE_TIMEBAR_TOTAL_SECONDS * 1000 / timeBarLength_up;
-                    //invalidate();
                     if (handler.hasMessages(ACTION_UP))
                         handler.removeMessages(ACTION_UP);
                     handler.sendEmptyMessageDelayed(ACTION_UP, 1100);

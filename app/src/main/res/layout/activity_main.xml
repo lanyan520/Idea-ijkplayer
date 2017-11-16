@@ -54,6 +54,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/multipleSpeed"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:gravity="center_vertical"
@@ -61,7 +62,7 @@
                     android:layout_marginTop="1dp"
                     android:background="#FFFFFF"
                     android:textColor="#444444"
-                    android:text="TODO "
+                    android:text="MultipleSpeedView "
                     />
             </LinearLayout>
 
