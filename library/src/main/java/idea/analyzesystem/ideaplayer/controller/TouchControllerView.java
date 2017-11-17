@@ -24,6 +24,11 @@ public class TouchControllerView extends View implements View.OnClickListener {
     public TouchControllerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setBackgroundColor(Color.parseColor("#00000000"));
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
         setOnClickListener(this);
     }
 

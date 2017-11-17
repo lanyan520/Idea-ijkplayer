@@ -19,6 +19,8 @@
 
         <activity android:name=".Activity_TimeBarView"/>
         <activity android:name=".Activity_MultipleSpeedView"/>
+        <activity android:name=".Activity_BaseControllerView"
+            android:theme="@style/AppFullTheme"/>
     </application>
 
 </manifest>

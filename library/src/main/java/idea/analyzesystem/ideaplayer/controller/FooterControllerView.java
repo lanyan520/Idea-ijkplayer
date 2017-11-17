@@ -23,12 +23,17 @@ public class FooterControllerView extends BaseControllerLayout{
     }
 
     @Override
-    public void hide() {
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+    }
 
+    @Override
+    public void hide() {
+        TranslateAnimationHelper.translateY(this,0,1);
     }
 
     @Override
     public void show() {
-
+        TranslateAnimationHelper.translateY(this,1,0);
     }
 }

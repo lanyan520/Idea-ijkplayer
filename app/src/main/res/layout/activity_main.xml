@@ -31,14 +31,14 @@
                 >
 
                 <TextView
-                    android:id="@+id/TouchControllerView"
+                    android:id="@+id/BaseControllerView"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:gravity="center_vertical"
                     android:padding="10dp"
                     android:background="#FFFFFF"
                     android:textColor="#444444"
-                    android:text="TouchControllerView "
+                    android:text="BaseControllerView "
                     />
 
                 <TextView

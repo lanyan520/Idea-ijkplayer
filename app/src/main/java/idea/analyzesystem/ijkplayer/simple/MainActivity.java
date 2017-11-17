@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.TouchControllerView:
-
+            case R.id.BaseControllerView:
+                startActivity(Activity_BaseControllerView.class);
                 break;
             case R.id.TimeBarView:
                 startActivity(Activity_TimeBarView.class);

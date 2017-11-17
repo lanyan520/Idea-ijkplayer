@@ -27,12 +27,19 @@ public class HeaderControllerView extends BaseControllerLayout implements View.O
 
     public HeaderControllerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        backView.setOnClickListener(this);
+        initTheme();
+    }
+
+    private void initTheme() {
+
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        backView = (ImageView) getChildAt(0);
+        titleTextView = (TextView) getChildAt(1);
+        backView.setOnClickListener(this);
 
     }
 
@@ -42,25 +49,25 @@ public class HeaderControllerView extends BaseControllerLayout implements View.O
 
     @Override
     public void hide() {
-
+          TranslateAnimationHelper.translateY(this,0,-1);
     }
 
     @Override
     public void show() {
-
+         TranslateAnimationHelper.translateY(this,-1,0);
     }
 
     @Override
     public void onClick(View v) {
         if(onHeaderControllerListener!=null){
-            onHeaderControllerListener.onFinishActivity();
+            onHeaderControllerListener.onVideoBack();
         }
     }
 
 
     public interface OnHeaderControllerListener{
 
-        void onFinishActivity();
+        void onVideoBack();
 
     }
 
