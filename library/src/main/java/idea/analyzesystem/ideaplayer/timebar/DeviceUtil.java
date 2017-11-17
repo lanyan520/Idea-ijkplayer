@@ -1,4 +1,4 @@
-package idea.analyzesystem.player.timebar;
+package idea.analyzesystem.ideaplayer.timebar;
 
 import android.content.Context;
 import android.content.res.Resources;

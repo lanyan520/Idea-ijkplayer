@@ -22,16 +22,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <idea.analyzesystem.player.multiplespeed.MultipleSpeedView
+            <idea.analyzesystem.ideaplayer.multiplespeed.MultipleSpeedView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_margin="20dp"/>
 
-            <idea.analyzesystem.player.multiplespeed.MultipleSpeedView
+            <idea.analyzesystem.ideaplayer.multiplespeed.MultipleSpeedView
                 android:layout_width="100dp"
                 android:layout_height="80dp"
                 android:layout_margin="20dp"/>
-           <idea.analyzesystem.player.multiplespeed.MultipleSpeedView
+           <idea.analyzesystem.ideaplayer.multiplespeed.MultipleSpeedView
                android:layout_width="200dp"
                android:layout_height="200dp"
                android:layout_margin="20dp"/>

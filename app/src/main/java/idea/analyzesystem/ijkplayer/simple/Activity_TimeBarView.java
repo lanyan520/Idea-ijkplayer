@@ -12,11 +12,10 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import idea.analyzesystem.player.timebar.RecordDataExistTimeSegment;
-import idea.analyzesystem.player.timebar.TimeBarView;
+import idea.analyzesystem.ideaplayer.timebar.RecordDataExistTimeSegment;
+import idea.analyzesystem.ideaplayer.timebar.TimeBarView;
 
 /**
  * Created by idea on 2017/11/15.

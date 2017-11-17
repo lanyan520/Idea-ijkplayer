@@ -1,5 +1,5 @@
 
-package idea.analyzesystem.player.timebar;
+package idea.analyzesystem.ideaplayer.timebar;
 
 public class TimebarTickCriterion {
 

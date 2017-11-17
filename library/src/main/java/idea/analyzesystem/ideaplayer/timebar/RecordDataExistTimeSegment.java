@@ -1,5 +1,5 @@
 
-package idea.analyzesystem.player.timebar;
+package idea.analyzesystem.ideaplayer.timebar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

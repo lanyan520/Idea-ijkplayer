@@ -1,4 +1,4 @@
-package idea.analyzesystem.player.multiplespeed;
+package idea.analyzesystem.ideaplayer.multiplespeed;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -14,7 +14,7 @@ import android.view.View;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import idea.analyzesystem.player.DensityHelper;
+import idea.analyzesystem.ideaplayer.DensityHelper;
 
 /**
  * @author idea
@@ -70,7 +70,12 @@ public class MultipleSpeedView extends View implements View.OnClickListener{
     public MultipleSpeedView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setOnClickListener(this);
+        initTheme();
         initPaint();
+    }
+
+    private void initTheme() {
+        //TODO TypedArray
     }
 
     private void initPaint() {

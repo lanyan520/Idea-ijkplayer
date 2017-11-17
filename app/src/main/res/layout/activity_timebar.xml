@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <idea.analyzesystem.player.timebar.TimeBarView
+            <idea.analyzesystem.ideaplayer.timebar.TimeBarView
                android:layout_marginTop="20dp"
               android:id="@+id/TimeBarView"
                 android:layout_width="match_parent"

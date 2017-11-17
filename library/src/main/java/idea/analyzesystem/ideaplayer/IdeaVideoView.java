@@ -1,4 +1,4 @@
-package idea.analyzesystem.player;
+package idea.analyzesystem.ideaplayer;
 
 import android.content.Context;
 import android.support.annotation.AttrRes;
